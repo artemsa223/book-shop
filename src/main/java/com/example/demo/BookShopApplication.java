@@ -28,10 +28,8 @@ public class BookShopApplication {
             book.setPrice(BigDecimal.TEN);
             book.setIsbn("1234-5678");
             book.setDescription("A novel about...");
-            //just try to make pr
             bookService.save(book);
             bookService.findAll().forEach(System.out::println);
-
         };
     }
 }
