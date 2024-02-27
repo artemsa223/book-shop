@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import com.example.demo.model.Book;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,6 +42,15 @@ public class BookDaoImpl implements BookRepository {
             return session.createQuery("from Book", Book.class).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Cant find all books");
+        }
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        try (Session session = factory.openSession()) {
+            return Optional.ofNullable(session.get(Book.class, id));
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get a book by id " + id, e);
         }
     }
 }
