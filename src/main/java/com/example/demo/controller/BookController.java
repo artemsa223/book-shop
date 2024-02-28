@@ -38,11 +38,6 @@ public class BookController {
         return bookService.createBook(requestDto);
     }
 
-    @GetMapping("/by-title")
-    public List<BookDto> findAllByTitle(@RequestParam String title) {
-        return bookService.findAllByTitle(title);
-    }
-
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
