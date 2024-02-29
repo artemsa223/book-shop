@@ -25,8 +25,9 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
             valid = firstObj == null && secondObj == null
                     || firstObj != null && firstObj.equals(secondObj);
-        } catch (final Exception ignore) {
-            // ignore
+        } catch (final Exception ex) {
+            System.err.println("An error occurred while comparing properties: " + ex.getMessage());
+            ex.printStackTrace();
         }
         if (!valid) {
             context.buildConstraintViolationWithTemplate(message)
