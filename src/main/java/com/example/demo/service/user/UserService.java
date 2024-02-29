@@ -9,5 +9,4 @@ public interface UserService {
             throws RegistrationException;
 
     void deleteById(Long id);
-
 }
