@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-data-users-table
+      author: me
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_USER
+  - changeSet:
+      id: insert-users
+      author: me
+      changes:
+            - insert:
+                tableName: users
+                columns:
+                - column:
+                    name: id
+                    value: 1
+                - column:
+                    name: email
+                    value: 1@ex.com
+                - column:
+                    name: password
+                    value: $2a$10$iUWCHShYCvSbQAYyiTLov.Ulqs1r0xpXWjE/N.BzQj5tAN9l5hQJy
+                - column:
+                    name: repeat_password
+                    value: $2a$10$iUWCHShYCvSbQAYyiTLov.Ulqs1r0xpXWjE/N.BzQj5tAN9l5hQJy
+                - column:
+                    name: first_name
+                    value: John
+                - column:
+                    name: last_name
+                    value: Doe
+                - column:
+                    name: shipping_address
+                    value: 1234 Main St
+            - insert:
+                tableName: users
+                columns:
+                - column:
+                    name: id
+                    value: 2
+                - column:
+                    name: email
+                    value: 2@ex.com
+                - column:
+                    name: password
+                    value: $2a$10$iUWCHShYCvSbQAYyiTLov.Ulqs1r0xpXWjE/N.BzQj5tAN9l5hQJy
+                - column:
+                    name: repeat_password
+                    value: $2a$10$iUWCHShYCvSbQAYyiTLov.Ulqs1r0xpXWjE/N.BzQj5tAN9l5hQJy
+                - column:
+                    name: first_name
+                    value: Jane
+                - column:
+                    name: last_name
+                    value: Doe
+                - column:
+                    name: shipping_address
+                    value: 1234 Main St
+  - changeSet:
+      id: insert-into-users_roles
+      author: me
+      changes:
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 2
