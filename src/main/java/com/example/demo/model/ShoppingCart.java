@@ -11,11 +11,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Set;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-@Data
+@Getter
+@Setter
 @Entity
 @SQLDelete(sql = "UPDATE shopping_cart SET is_deleted = TRUE WHERE id = ?")
 @Where(clause = "is_deleted = FALSE")
@@ -27,11 +29,8 @@ public class ShoppingCart {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     @OneToMany(mappedBy = "shoppingCart",fetch = FetchType.LAZY)
     private Set<CartItem> cartItems;
     @Column(nullable = false)
     private boolean isDeleted = false;
-
-
 }
