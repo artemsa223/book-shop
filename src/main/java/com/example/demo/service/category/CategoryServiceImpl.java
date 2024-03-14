@@ -1,6 +1,7 @@
 package com.example.demo.service.category;
 
 import com.example.demo.dto.category.CategoryDto;
+import com.example.demo.dto.category.CreateCategoryRequestDto;
 import com.example.demo.exception.EntityNotFoundException;
 import com.example.demo.mapper.CategoryMapper;
 import com.example.demo.model.Category;
@@ -31,12 +32,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDto createCategory(CategoryDto requestDto) {
+    public CategoryDto createCategory(CreateCategoryRequestDto requestDto) {
         return categoryMapper.toDto(categoryRepository.save(categoryMapper.toModel(requestDto)));
     }
 
     @Override
-    public CategoryDto updateById(Long id, CategoryDto requestDto) {
+    public CategoryDto updateById(Long id, CreateCategoryRequestDto requestDto) {
         if (!categoryRepository.existsById(id)) {
             throw new EntityNotFoundException("Category with id: " + id + " does not exist");
         }

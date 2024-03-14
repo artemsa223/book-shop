@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.book.BookDtoWithoutCategoryIds;
 import com.example.demo.dto.category.CategoryDto;
+import com.example.demo.dto.category.CreateCategoryRequestDto;
 import com.example.demo.service.book.BookService;
 import com.example.demo.service.category.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class CategoryController {
     @Operation(summary = "Create a category", description = "Create a new category")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDto createCategory(@RequestBody @Valid CategoryDto requestDto) {
+    public CategoryDto createCategory(@RequestBody @Valid CreateCategoryRequestDto requestDto) {
         return categoryService.createCategory(requestDto);
     }
 
@@ -53,7 +54,7 @@ public class CategoryController {
     @Operation(summary = "Update a category by id", description = "Update a category by its id")
     @PutMapping("/{id}")
     public CategoryDto updateCategory(@PathVariable Long id, @RequestBody @Valid
-            CategoryDto requestDto) {
+            CreateCategoryRequestDto requestDto) {
         return categoryService.updateById(id, requestDto);
     }
 

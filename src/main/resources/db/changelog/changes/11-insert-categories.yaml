@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories
+      author: me
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Science Fiction"
+        - insert:
+            tableName: categories
+            columns:
+                - column:
+                    name: name
+                    value: "Fantastic"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Horror"
