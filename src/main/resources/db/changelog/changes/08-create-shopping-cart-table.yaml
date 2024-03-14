@@ -1,26 +1,25 @@
 databaseChangeLog:
   - changeSet:
-      id: create-categories-table
+      id: create-shopping-carts-table
       author: me
       changes:
         - createTable:
-            tableName: categories
+            tableName: shopping_carts
             columns:
               - column:
                   name: id
-                  type: bigint
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
-                  type: varchar(255)
+                  name: user_id
+                  type: BIGINT
                   constraints:
                     nullable: false
-              - column:
-                  name: description
-                  type: varchar(255)
+                    foreignKeyName: fk_shopping_carts_user_id
+                    references: users(id)
               - column:
                   name: is_deleted
                   type: BOOLEAN
