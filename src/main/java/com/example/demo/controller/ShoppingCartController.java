@@ -34,7 +34,7 @@ public class ShoppingCartController {
     @GetMapping
     ShoppingCartDto getCart(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        return shoppingCartService.getShoppingCartByUserId(user.getId());
+        return shoppingCartService.getShoppingCartDtoByUserId(user.getId());
     }
 
     @Operation(summary = "Add books to shopping cart")

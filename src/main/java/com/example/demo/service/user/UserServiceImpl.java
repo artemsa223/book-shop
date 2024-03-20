@@ -2,6 +2,7 @@ package com.example.demo.service.user;
 
 import com.example.demo.dto.user.UserRegistrationRequestDto;
 import com.example.demo.dto.user.UserResponseDto;
+import com.example.demo.exception.EntityNotFoundException;
 import com.example.demo.exception.RegistrationException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.Role;
@@ -39,5 +40,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Can't find user by id=" + id));
     }
 }
