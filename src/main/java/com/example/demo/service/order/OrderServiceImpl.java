@@ -42,7 +42,6 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalStateException("Empty shopping cart!");
         }
         Order order = createOrder(userId, requestDto);
-        order = orderRepository.save(order);
         Set<OrderItem> orderItems = createOrderItemsSet(shoppingCart, order);
         order.setOrderItems(orderItems);
         order.setTotal(order.getOrderItems().stream()

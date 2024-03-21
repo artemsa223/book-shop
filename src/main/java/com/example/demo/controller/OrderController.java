@@ -29,7 +29,6 @@ public class OrderController {
     private final OrderService orderService;
 
     @Operation(summary = "Create order")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     OrderDto placeOrder(Authentication authentication,
                         @RequestBody @Valid CreateOrderRequestDto requestDto) {
@@ -39,7 +38,6 @@ public class OrderController {
 
     @Operation(summary = "Get all orders",
             description = "Return all orders for the current user")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     List<OrderDto> getAllOrders(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
@@ -47,7 +45,6 @@ public class OrderController {
     }
 
     @Operation(summary = "Get a specific order item")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("{orderId}/items/{itemId}")
     OrderItemDto getOrderItem(Authentication authentication,
                               @PathVariable Long itemId,
@@ -57,7 +54,6 @@ public class OrderController {
     }
 
     @Operation(summary = "Get all items for a specific order")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{orderId}/items")
     List<OrderItemDto> getAllOrderItems(Authentication authentication,
                                         @PathVariable Long orderId) {

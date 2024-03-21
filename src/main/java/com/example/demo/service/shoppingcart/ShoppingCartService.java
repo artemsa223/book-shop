@@ -6,7 +6,6 @@ import com.example.demo.dto.shoppingcart.ShoppingCartDto;
 import com.example.demo.model.ShoppingCart;
 
 public interface ShoppingCartService {
-    ShoppingCartDto getShoppingCartDtoByUserId(Long id);
 
     ShoppingCart getShoppingCartByUserId(Long id);
 

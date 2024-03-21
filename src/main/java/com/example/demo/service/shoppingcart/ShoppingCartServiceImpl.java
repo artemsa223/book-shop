@@ -25,11 +25,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartMapper cartMapper;
 
     @Override
-    public ShoppingCartDto getShoppingCartDtoByUserId(Long id) {
-        return cartMapper.toDto(getCartByUserId(id));
-    }
-
-    @Override
     public ShoppingCart getShoppingCartByUserId(Long id) {
         return getCartByUserId(id);
     }
