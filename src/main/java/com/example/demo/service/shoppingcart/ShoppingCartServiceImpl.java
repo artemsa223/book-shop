@@ -25,8 +25,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartMapper cartMapper;
 
     @Override
-    public ShoppingCartDto getShoppingCartByUserId(Long id) {
-        return cartMapper.toDto(getCartByUserId(id));
+    public ShoppingCart getShoppingCartByUserId(Long id) {
+        return getCartByUserId(id);
     }
 
     @Override
@@ -52,6 +52,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cartItemMapper.update(requestDto, cartItem);
         cartItemRepository.save(cartItem);
         return cartMapper.toDto(getCartByUserId(userId));
+    }
+
+    @Override
+    public void clearShoppingCart(Long cartId) {
+        cartItemRepository.deleteByShoppingCartId(cartId);
     }
 
     private ShoppingCart getCartByUserId(Long id) {

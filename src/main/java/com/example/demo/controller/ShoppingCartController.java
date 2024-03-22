@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.cartitem.AddItemToCartRequestDto;
 import com.example.demo.dto.cartitem.UpdateCartItemById;
 import com.example.demo.dto.shoppingcart.ShoppingCartDto;
+import com.example.demo.mapper.ShoppingCartMapper;
 import com.example.demo.model.User;
 import com.example.demo.service.shoppingcart.ShoppingCartService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
+    private final ShoppingCartMapper cartMapper;
 
     @Operation(summary = "Get shopping cart",
             description = "Show user`s shopping cart")
@@ -34,7 +36,7 @@ public class ShoppingCartController {
     @GetMapping
     ShoppingCartDto getCart(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        return shoppingCartService.getShoppingCartByUserId(user.getId());
+        return cartMapper.toDto(shoppingCartService.getShoppingCartByUserId(user.getId()));
     }
 
     @Operation(summary = "Add books to shopping cart")
